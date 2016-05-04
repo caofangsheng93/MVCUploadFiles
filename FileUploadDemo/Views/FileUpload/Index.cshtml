@@ -1,0 +1,28 @@
+﻿@model IEnumerable<FileUploadDemo.Models.GalleryViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Photo Gallery <a href="@Url.Action("Create", "FileUpload")" class="btn btn-primary pull-right">Add New Image</a></h2>
+<hr />
+
+@if (Model != null)
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3 align-center">
+                        <img src="@Url.Action("GetFile", "FileUpload", new { id = item.Id })" class="img-circle" width="150" height="150" />
+                        <p>@item.Title</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <p>No photos are uploaded</p>
+}
